@@ -9,6 +9,7 @@ export default function Book(props) {
     return (
         <Carousel.Item>
             <Card style={{ width: '18rem' }}>
+                <Card.Img variant="top" src="https://placehold.co/600x400" />
                 <Card.Body>
                     <Card.Title>{props.title}</Card.Title>
                     <Card.Text>
@@ -17,6 +18,7 @@ export default function Book(props) {
                 </Card.Body>
             </Card>
         </Carousel.Item>
+
     )
 }
 
