@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-
+import Carousel from 'react-bootstrap/Carousel';
+import Book from "./Book";
 
 const SERVER = import.meta.env.VITE_SERVER_URL;
 
@@ -32,7 +33,21 @@ console.log(books)
       <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
 
       {books.length ? (
-        <p>Book Carousel coming soon</p>
+      <Carousel>
+        {books.map(book => {
+          <Book key={book._id} title = {books.title} description={books.description} />
+
+        })}
+
+
+
+
+
+
+
+
+      </Carousel>
+      
       ) : (
         <h3>No Books Found </h3>
       )}
