@@ -13,25 +13,23 @@ import {
 
 
 
-class App extends React.Component {
-  render() {
-    return (
-      <>
-        <Router>
-          <Header />
-          <Routes>
-            <Route 
-              exact path="/"
-              element={<BestBooks />}
-            >
-            </Route>
-            {/* PLACEHOLDER: add a route with a path of '/about' that renders the `About` component */}
-          </Routes>
-          <Footer />
-        </Router>
-      </>
-    )
-  }
+function App() {
+  return (
+    <>
+      <Router>
+        <Header />
+        <Routes>
+          <Route
+            exact path="/"
+            element={<BestBooks />}
+          >
+          </Route>
+          {/* PLACEHOLDER: add a route with a path of '/about' that renders the `About` component */}
+        </Routes>
+        <Footer />
+      </Router>
+    </>
+  )
 }
 
 export default App;
