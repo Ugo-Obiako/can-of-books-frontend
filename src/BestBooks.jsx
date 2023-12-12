@@ -34,10 +34,10 @@ console.log(books)
 
       {books.length ? (
       <Carousel>
-        {books.map(book => {
+        {books.map(book => 
           <Book key={book._id} title = {books.title} description={books.description} />
 
-        })}
+        )}
 
 
 
