@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 const SERVER = import.meta.env.VITE_SERVER_URL;
 
-async function BestBooks () {
+function BestBooks () {
 const [books, setBooks] = useState([]);
 
 useEffect(() => {
@@ -31,7 +31,7 @@ console.log(books)
     <>
       <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
 
-      {this.state.books.length ? (
+      {books.length ? (
         <p>Book Carousel coming soon</p>
       ) : (
         <h3>No Books Found </h3>
