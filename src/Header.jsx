@@ -8,8 +8,8 @@ class Header extends React.Component {
       <Navbar collapseOnSelect expand="lg">
         <Navbar.Brand>My Favorite Books</Navbar.Brand>
         <Nav>
-          <Nav.Link><Link to="/" className="nav-link">Home</Link></Nav.Link>
-          <Nav.Link><Link to="/about" className="nav-link">About</Link></Nav.Link>
+          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/about" className="nav-link">About</Link>
         </Nav>
       </Navbar>
     )

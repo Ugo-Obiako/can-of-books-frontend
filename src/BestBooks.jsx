@@ -1,64 +1,43 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
+import Button from 'react-bootstrap/Button';
 import Book from "./Book";
+import AddBookModal from './AddBookModal';
 
-const SERVER = import.meta.env.VITE_SERVER_URL;
+function BestBooks(props) {
 
-function BestBooks () {
-const [books, setBooks] = useState([]);
+  const [showAddBookModal, setShowAddBookModal] = useState(false);
 
-useEffect(() => {
-  fetchBooks();
-}, []);
+  function openAddBookForm() {
+    setShowAddBookModal(true);
+  }
 
-async function fetchBooks () {
-  const url = `${SERVER}/books`;
-
-  try {
-    const response = await axios.get(url);
-    setBooks(response.data);
-  } catch (error) {
-    console.error(error);
+  function hideAddBookForm() {
+    setShowAddBookModal(false);
   }
 
   
-}
-
-
-console.log(books)
+    
 
   return (
     <>
+
       <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
 
-      {books.length ? (
-      <Carousel>
-        {books.map(book => 
-          <Book key={book._id} title = {books.title} description={books.description} />
-
+      <Carousel interval={null} style={{ width: '400px', backgroundColor: 'black' }}>
+        {props.books.map(book =>
+          <Carousel.Item key={book._id}>
+            <Book title={book.title} description={book.description} />
+          </Carousel.Item>
         )}
-
-
-
-
-
-
-
-
       </Carousel>
-      
-      ) : (
-        <h3>No Books Found </h3>
-      )}
+
+      <Button onClick={openAddBookForm}>Add Book</Button>
+
+      <AddBookModal show={showAddBookModal} onHide={hideAddBookForm} onAddBook={props.onAddBook} />
+
     </>
   )
 }
-    
-  /* TODO: Make a GET request to your API to fetch all the books from the database  */
 
-
-    /* TODO: render all the books in a Carousel */
-
-    
 export default BestBooks;
