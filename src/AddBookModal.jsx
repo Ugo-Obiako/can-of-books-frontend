@@ -4,8 +4,6 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Stack from 'react-bootstrap/Stack';
 
-const SERVER = import.meta.env.VITE_SERVER_URL;
-
 function AddBookModal({ show, onHide, onAddBook }) {
 
   const [title, setTitle] = useState();

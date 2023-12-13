@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Book from "./Book";
 import AddBookModal from './AddBookModal';
 
-function BestBooks(props) {
+function BestBooks({ books, onAddBook }) {
 
   const [showAddBookModal, setShowAddBookModal] = useState(false);
 
@@ -16,7 +16,9 @@ function BestBooks(props) {
     setShowAddBookModal(false);
   }
 
-  const booksLibrary = props.books.map(book =>
+  const booksLibrary = 
+  
+    books.map(book =>
     <Carousel.Item key={book._id}>
       <Book title={book.title} description={book.description} />
     </Carousel.Item>
@@ -33,7 +35,7 @@ function BestBooks(props) {
 
       <Button onClick={openAddBookForm}>Add Book</Button>
 
-      <AddBookModal show={showAddBookModal} onHide={hideAddBookForm} onAddBook={props.onAddBook} />
+      <AddBookModal show={showAddBookModal} onHide={hideAddBookForm} onAddBook={onAddBook} />
 
     </>
   )
