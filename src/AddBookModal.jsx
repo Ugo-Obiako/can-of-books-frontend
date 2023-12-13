@@ -59,8 +59,6 @@ function AddBookModal({ show, onHide, onAddBook }) {
       </Modal.Body>
 
       <Modal.Footer>
-        <p>{title}</p>
-        <p>{description}</p>
         <Button onClick={handleAddBook}>Add Book</Button>
       </Modal.Footer>
     </Modal>

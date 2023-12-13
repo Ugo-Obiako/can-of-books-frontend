@@ -39,10 +39,12 @@ function App() {
     const url = `${SERVER}/books`;
 
     try {
-      
+      await axios.post(url, bookToAdd);
     } catch (error) {
       console.error(error);
     }
+
+    fetchBooks();
   }
 
   return (
