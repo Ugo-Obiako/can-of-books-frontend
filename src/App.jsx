@@ -35,6 +35,16 @@ function App() {
     }
   }
 
+  async function addBookRequest(bookToAdd) {
+    const url = `${SERVER}/books`;
+
+    try {
+      
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <>
       <BrowserRouter>
@@ -42,7 +52,7 @@ function App() {
         <Header />
 
         <Routes>
-          <Route exact path="/" element={<BestBooks books={books} />} />
+          <Route exact path="/" element={<BestBooks books={books} onAddBook={addBookRequest} />} />
           <Route exact path="/About" element={<About />} />
         </Routes>
 

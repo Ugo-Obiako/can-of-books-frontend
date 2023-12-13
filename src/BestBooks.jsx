@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
 import Book from "./Book";
-import AddBookModal from './AddBook';
+import AddBookModal from './AddBookModal';
 
 function BestBooks(props) {
 
@@ -35,7 +35,7 @@ function BestBooks(props) {
 
       <Button onClick={openAddBookForm}>Add Book</Button>
 
-      <AddBookModal show={showAddBookModal} onHide={hideAddBookForm} />
+      <AddBookModal show={showAddBookModal} onHide={hideAddBookForm} onAddBook={props.onAddBook} />
 
     </>
   )
