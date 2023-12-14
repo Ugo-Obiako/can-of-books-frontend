@@ -4,22 +4,15 @@ import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
 import Book from "./Book";
 import AddBookModal from './AddBookModal';
+import UpdateBookModal from './UpdateBookModal';
 
 const SERVER = import.meta.env.VITE_SERVER_URL;
 
 function BestBooks() {
 
-  const [showAddBookModal, setShowAddBookModal] = useState(false);
-
-  function openAddBookForm() {
-    setShowAddBookModal(true);
-  }
-
-  function hideAddBookForm() {
-    setShowAddBookModal(false);
-  }
-
   const [books, setBooks] = useState([]);
+  const [showAddBookModal, setShowAddBookModal] = useState(false);
+  const [showUpdateBookModal, setShowUpdateBookModal] = useState(false);
 
   useEffect(() => {
     fetchBooks();
@@ -31,7 +24,6 @@ function BestBooks() {
     try {
       const response = await axios.get(url);
       setBooks(response.data);
-      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -49,7 +41,7 @@ function BestBooks() {
     fetchBooks();
   }
 
-  async function deleteBook (bookID) {
+  async function deleteBook(bookID) {
     const url = `${SERVER}/books/${bookID}`;
 
     try {
@@ -61,6 +53,21 @@ function BestBooks() {
     fetchBooks();
   }
 
+  // show/hide AddBookModal
+  function openAddBookForm() {
+    setShowAddBookModal(true);
+  }
+  function hideAddBookForm() {
+    setShowAddBookModal(false);
+  }
+
+  // show/hide UpdateBookModal
+  function openUpdateBookForm() {
+    setShowUpdateBookModal(true);
+  }
+  function hideUpdateBookForm() {
+    setShowUpdateBookModal(false);
+  }
 
   return (
     <>
@@ -71,7 +78,7 @@ function BestBooks() {
         {books.length ?
           (books.map(book =>
             <Carousel.Item key={book._id}>
-              <Book title={book.title} description={book.description} id={book._id} status={book.status} onDelete={deleteBook}  />
+              <Book title={book.title} description={book.description} id={book._id} status={book.status} onDelete={deleteBook} onUpdate={openUpdateBookForm} />
             </Carousel.Item>
           )) : null}
       </Carousel>
@@ -79,6 +86,8 @@ function BestBooks() {
       <Button onClick={openAddBookForm}>Add Book</Button>
 
       <AddBookModal show={showAddBookModal} onHide={hideAddBookForm} onAddBook={addBookRequest} />
+
+      <UpdateBookModal show={showUpdateBookModal} onHide={hideUpdateBookForm} />
 
     </>
   )

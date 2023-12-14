@@ -12,14 +12,19 @@ export default function Book(props) {
         console.log(props.id)
     }
 
+    function handleUpdate() {
+        props.onUpdate();
+    }
+
     return (
         <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src="https://placehold.co/600x400" />
             <Card.Body>
                 <Card.Title>{props.title}</Card.Title>
+                <Button onClick={handleDelete}>Delete Book</Button>
+                <Button onClick={handleUpdate}>Update Book</Button>
                 <Card.Text>
-                    {props.description}
-                    <Button onClick={handleDelete}> Delete book</Button>
+                    {props.description} 
                 </Card.Text>
             </Card.Body>
             <Card.Footer>
