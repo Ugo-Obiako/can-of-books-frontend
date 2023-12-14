@@ -49,6 +49,19 @@ function BestBooks() {
     fetchBooks();
   }
 
+  async function deleteBook (bookID) {
+    const url = `${SERVER}/books/${bookID}`;
+
+    try {
+      await axios.delete(url);
+    } catch (error) {
+      console.error(error);
+    }
+
+    fetchBooks();
+  }
+
+
   return (
     <>
 
@@ -58,7 +71,7 @@ function BestBooks() {
         {books.length ?
           (books.map(book =>
             <Carousel.Item key={book._id}>
-              <Book title={book.title} description={book.description} />
+              <Book title={book.title} description={book.description} id={book._id} status={book.status} onDelete={deleteBook}  />
             </Carousel.Item>
           )) : null}
       </Carousel>
