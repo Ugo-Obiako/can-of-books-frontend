@@ -16,8 +16,8 @@ function BestBooks(props) {
     setShowAddBookModal(false);
   }
 
-  
-    
+
+
 
   return (
     <>
@@ -25,11 +25,12 @@ function BestBooks(props) {
       <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
 
       <Carousel interval={null} style={{ width: '400px', backgroundColor: 'black' }}>
-        {props.books.map(book =>
-          <Carousel.Item key={book._id}>
-            <Book title={book.title} description={book.description} />
-          </Carousel.Item>
-        )}
+        {props.books.length ?
+          (props.books.map(book =>
+            <Carousel.Item key={book._id}>
+              <Book title={book.title} description={book.description} />
+            </Carousel.Item>
+          )) : null}
       </Carousel>
 
       <Button onClick={openAddBookForm}>Add Book</Button>
