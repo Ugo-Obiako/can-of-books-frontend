@@ -12,7 +12,7 @@ function AddBookModal({ show, onHide, onAddBook }) {
 
   function handleChange(event) {
     const formField = event.target.id;
-    if(formField === 'title') {
+    if (formField === 'title') {
       setTitle(event.target.value);
     } else if (formField === 'description') {
       setDescription(event.target.value);

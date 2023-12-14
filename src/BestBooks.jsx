@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Container from 'react-bootstrap/Container'
 import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
 import Book from "./Book";
@@ -13,6 +14,7 @@ function BestBooks() {
   const [books, setBooks] = useState([]);
   const [showAddBookModal, setShowAddBookModal] = useState(false);
   const [showUpdateBookModal, setShowUpdateBookModal] = useState(false);
+  const [bookToUpdate, setBookToUpdate] = useState({});
 
   useEffect(() => {
     fetchBooks();
@@ -53,6 +55,10 @@ function BestBooks() {
     fetchBooks();
   }
 
+  async function updateBook(book) {
+    console.log(book);
+  }
+
   // show/hide AddBookModal
   function openAddBookForm() {
     setShowAddBookModal(true);
@@ -62,7 +68,8 @@ function BestBooks() {
   }
 
   // show/hide UpdateBookModal
-  function openUpdateBookForm() {
+  function openUpdateBookForm(book) {
+    setBookToUpdate(book);
     setShowUpdateBookModal(true);
   }
   function hideUpdateBookForm() {
@@ -70,7 +77,7 @@ function BestBooks() {
   }
 
   return (
-    <>
+    <Container>
 
       <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
 
@@ -78,7 +85,7 @@ function BestBooks() {
         {books.length ?
           (books.map(book =>
             <Carousel.Item key={book._id}>
-              <Book title={book.title} description={book.description} id={book._id} status={book.status} onDelete={deleteBook} onUpdate={openUpdateBookForm} />
+              <Book book={book} title={book.title} description={book.description} id={book._id} status={book.status} onDelete={deleteBook} onUpdate={openUpdateBookForm} />
             </Carousel.Item>
           )) : null}
       </Carousel>
@@ -87,9 +94,9 @@ function BestBooks() {
 
       <AddBookModal show={showAddBookModal} onHide={hideAddBookForm} onAddBook={addBookRequest} />
 
-      <UpdateBookModal show={showUpdateBookModal} onHide={hideUpdateBookForm} />
+      <UpdateBookModal show={showUpdateBookModal} onHide={hideUpdateBookForm} bookToUpdate={bookToUpdate} onUpdateBook={updateBook} />
 
-    </>
+    </Container>
   )
 }
 

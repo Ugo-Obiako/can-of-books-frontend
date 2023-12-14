@@ -1,6 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-
+import Stack from 'react-bootstrap/Stack';
 
 
 
@@ -13,7 +13,7 @@ export default function Book(props) {
     }
 
     function handleUpdate() {
-        props.onUpdate();
+        props.onUpdate(props.book);
     }
 
     return (
@@ -21,10 +21,12 @@ export default function Book(props) {
             <Card.Img variant="top" src="https://placehold.co/600x400" />
             <Card.Body>
                 <Card.Title>{props.title}</Card.Title>
-                <Button onClick={handleDelete}>Delete Book</Button>
-                <Button onClick={handleUpdate}>Update Book</Button>
+                <Stack direction='horizontal' gap={1}>
+                    <Button onClick={handleDelete}>Delete Book</Button>
+                    <Button onClick={handleUpdate}>Update Book</Button>
+                </Stack>
                 <Card.Text>
-                    {props.description} 
+                    {props.description}
                 </Card.Text>
             </Card.Body>
             <Card.Footer>
