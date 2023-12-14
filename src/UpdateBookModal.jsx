@@ -4,11 +4,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Stack from 'react-bootstrap/Stack';
 
-function AddBookModal({ show, onHide, onAddBook }) {
+function UpdateBookModal({ show, onHide, bookToUpdate, onUpdateBook }) {
 
-  const [title, setTitle] = useState();
-  const [description, setDescription] = useState();
-  const [status, setStatus] = useState();
+  const [title, setTitle] = useState(bookToUpdate.title);
+  const [description, setDescription] = useState(bookToUpdate.description);
+  const [status, setStatus] = useState(bookToUpdate.status);
 
   function handleChange(event) {
     const formField = event.target.id;
@@ -21,9 +21,9 @@ function AddBookModal({ show, onHide, onAddBook }) {
     }
   }
 
-  function handleAddBook() {
+  function handleUpdateBook() {
     onHide();
-    onAddBook({
+    onUpdateBook({
       title: title,
       description: description,
       status: status
@@ -33,7 +33,7 @@ function AddBookModal({ show, onHide, onAddBook }) {
   return (
     <Modal show={show} onHide={onHide}>
       <Modal.Header closeButton>
-        <Modal.Title>Add a New Book</Modal.Title>
+        <Modal.Title>Update Book Information</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
@@ -41,26 +41,26 @@ function AddBookModal({ show, onHide, onAddBook }) {
           <Stack gap={3}>
             <Form.Group controlId='title'>
               <Form.Label>Title</Form.Label>
-              <Form.Control required onChange={handleChange}></Form.Control>
+              <Form.Control placeholder={bookToUpdate.title} required onChange={handleChange}></Form.Control>
             </Form.Group>
             <Form.Group controlId='description'>
               <Form.Label>Book Description</Form.Label>
-              <Form.Control required onChange={handleChange}></Form.Control>
+              <Form.Control placeholder={bookToUpdate.description} required onChange={handleChange}></Form.Control>
             </Form.Group>
             <Form.Group controlId='status'>
               <Form.Label>Do you have it?</Form.Label>
               <br />
-              <span> No </span><Form.Check type='switch' label='Yes' defaultChecked inline onChange={handleChange}></Form.Check>
+              <span> No </span><Form.Check type='switch' label='Yes' checked={bookToUpdate.status} inline onChange={handleChange}></Form.Check>
             </Form.Group>
           </Stack>
         </Form>
       </Modal.Body>
 
       <Modal.Footer>
-        <Button onClick={handleAddBook}>Add Book</Button>
+        <Button onClick={handleUpdateBook}>Update Book</Button>
       </Modal.Footer>
     </Modal>
   )
 }
 
-export default AddBookModal;
+export default UpdateBookModal;
