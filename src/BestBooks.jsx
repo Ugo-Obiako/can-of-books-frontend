@@ -56,7 +56,28 @@ function BestBooks() {
   }
 
   async function updateBook(book) {
+    
+    const url = `${SERVER}/books/${bookToUpdate._id}`;
+
+    if (book.title === undefined) {
+      book.title = bookToUpdate.title;
+    }
+    if (book.description === undefined) {
+      book.description = bookToUpdate.description;
+    }
+    if (book.status === undefined) {
+      book.status = bookToUpdate.status;
+    }
+
     console.log(book);
+
+    try {
+      await axios.post(url, book);
+    } catch (error) {
+      console.error(error);
+    }
+
+    fetchBooks();
   }
 
   // show/hide AddBookModal
